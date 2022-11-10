@@ -13,8 +13,6 @@ public class QuotingService {
     this.restTemplate = restTemplate;
   }
 
-
-
   // Retourne le prix actuel en fonction du nbkwh fournit par l'utilisateur
   public BigDecimal getPriceByNbKwh(BigDecimal nbkwh) {
 
@@ -40,12 +38,17 @@ public class QuotingService {
 
   // Méthode qui appel un micro-service Lowcarb
   public BigDecimal getPriceLowCarb() {
-    //String fooResourceUrl = "http://localhost:8090/api/lowcarprice/latest";
-    RestTemplate fooResourceUrl =
-        getRestTemplate(restTemplate.getForObject("http://localhost:8090/api/lowcarprice/latest", BigDecimal.class));
-
+    final MomentPrice mp =
+        restTemplate.getForObject("http://localhost:8090/api/lowcarb/latest",
+            MomentPrice.class);
     return BigDecimal.ZERO;
   }
+
+  // Version 2
+  /*public BigDecimal getPriceLowCarb() {
+    final BigDecimal response = restTemplate.getForObject("http://localhost:8090/api/lowcarb/latest", BigDecimal.class);
+    return response;
+*/
 
   private <T> RestTemplate getRestTemplate(T forObject) {
     return restTemplate;
@@ -58,10 +61,6 @@ public class QuotingService {
     BigDecimal priceCoalFired =
         price.multiply(nbkwh).divide(BigDecimal.valueOf(256));
     return priceCoalFired;
-  }
-
-  public RestTemplate getRestTemplate() {
-    return restTemplate;
   }
 
 }

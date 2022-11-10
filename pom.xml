@@ -37,7 +37,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- dependance du module core -->
+		<dependency>
+			<groupId>com.energycorp.lowcarb</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
+
 	</dependencies>
+
 
 	<build>
 		<plugins>
