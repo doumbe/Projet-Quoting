@@ -43,13 +43,6 @@ public class QuotingService {
             MomentPrice.class);
     return BigDecimal.ZERO;
   }
-
-  // Version 2
-  /*public BigDecimal getPriceLowCarb() {
-    final BigDecimal response = restTemplate.getForObject("http://localhost:8090/api/lowcarb/latest", BigDecimal.class);
-    return response;
-*/
-
   private <T> RestTemplate getRestTemplate(T forObject) {
     return restTemplate;
   }
